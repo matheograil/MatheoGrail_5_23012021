@@ -62,7 +62,7 @@ a:link, a:visited {
     margin: 5px 20px 5px 20px;
 }
 
-.products .products__items .products__item .products__description .price{
+.products .products__items .products__item .products__description .price {
     font-weight: 200;
 }
 
@@ -74,4 +74,22 @@ a:link, a:visited {
     .products .products__items .products__item {
         width: calc(100% - 20px);
     }
+}
+
+
+.selectedProduct {
+    margin: 0 auto;
+    max-width: 1250px;
+}
+
+.selectedProduct__header {
+    margin: 20px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectedProduct .selectedProduct__header h1 {
+    font-weight: 300;
 }
