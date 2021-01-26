@@ -3,9 +3,10 @@ let myCart = sessionStorage.getItem('myCart');
 let numberProductsInCart = 0;
 
 let productsInCart = JSON.parse(myCart);
-for (data in productsInCart) {
+for (data in myCart) {
     numberProductsInCart++;
 }
 
+//DOM.
 let div = document.querySelector('.myCart');
 div.textContent = `Mon panier (${numberProductsInCart})`;

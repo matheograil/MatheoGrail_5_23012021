@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Orinico</title>
+		<title>Orinico - Produit</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 		<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
@@ -11,13 +11,20 @@
 		<script type="text/javascript" src="../assets/js/myCartCount.js" defer></script>
 	</head>
 	<body>
-
 		<section class="selectedProduct">
 			<div class="selectedProduct__header">
-				<h1><a href="../">Produit sélectionné</a></h1>
-				<p><a class="myCart" href="mycart/">Mon panier</a></p>
+				<h1><a class="selectedProduct__title" href="../">Produit</a></h1>
+				<p><a class="myCart" href="../mycart/">Mon panier</a></p>
+			</div>
+			<div class="selectedProduct__info">
+				<img class="selectedProduct__img">
+				<p class="selectedProduct__name">Nom du produit</p>
+				<p class="selectedProduct__description">Description</p>
+				<p class="selectedProduct__price">Prix</p>
+				<a class="button">Ajouter au panier</a>
+				<select class="selectedProduct__options">
+				</select>
 			</div>
 		</section>
-
 	</body>
 </html>
