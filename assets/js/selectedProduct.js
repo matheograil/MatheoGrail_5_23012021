@@ -7,35 +7,16 @@ let request = new XMLHttpRequest();
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        let allProducts = JSON.parse(this.responseText);
-
-        let productSelected;
-        let productSelectedIdIsValid;
-        for (data in allProducts) {
-            if (allProducts[data]['_id'] == productSelectedId) {
-                productSelectedIdIsValid = true;
-                //On en profite pour sauvegarder le contenu du produit pour plus tard.
-                productSelected = allProducts[data];
-                break;
-            }
-        }
-        if (productSelectedIdIsValid != true) {
-            document.location.href='../'; 
-        }
+        let productSelected = JSON.parse(this.responseText);
 
         //DOM.
         document.title = `Orinico - ${productSelected['name']}`;
         document.querySelector('meta[name="description"]').setAttribute('content', productSelected['description']);
-
-        let div = document.querySelector('.selectedProduct__title');
-        div.textContent = productSelected['name'];
+        document.querySelector('.selectedProduct__title').textContent = productSelected['name'];
         document.querySelector('img[class="selectedProduct__img"]').setAttribute('src', productSelected['imageUrl']);
-        div = document.querySelector('.selectedProduct__name');
-        div.textContent = 'Produit → ' + productSelected['name'];
-        div = document.querySelector('.selectedProduct__description');
-        div.textContent = 'Description → ' + productSelected['description'];
-        div = document.querySelector('.selectedProduct__price');
-        div.textContent = 'Prix → ' + productSelected['price']/100 + '€';
+        document.querySelector('.selectedProduct__name').textContent = 'Produit → ' + productSelected['name'];
+        document.querySelector('.selectedProduct__description').textContent = 'Description → ' + productSelected['description'];
+        document.querySelector('.selectedProduct__price').textContent = 'Prix → ' + productSelected['price']/100 + '€';
 
         let i = 0;
         for (data in productSelected['lenses']) {
@@ -46,16 +27,22 @@ request.onreadystatechange = function() {
     }
 };
 
-request.open('GET', 'http://localhost:3000/api/cameras');
+request.open('GET', `http://localhost:3000/api/cameras/${productSelectedId}`);
 request.send();
 
 //On écoute les évènements pour savoir quand ajouter l'article au panier.
-let button = document.querySelector('.button');
-button.addEventListener('click', function() {
-    let lenseSelected = document.querySelector('.selectedProduct__options');
-    let strUser = lenseSelected.value;
+document.querySelector('.button').addEventListener('click', function() {
+    let selectedOption = document.querySelector('.selectedProduct__options').value;
 
-    //...
+    let myCart = JSON.parse(localStorage.getItem('myCart'));
+    if (myCart == null) {
+        myCart = [[productSelectedId, selectedOption]];
+        localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
+    else {
+        let newProductInCart = myCart.push(productSelectedId);
+        localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
 
     window.alert('Article ajouté au panier !');
     document.location.reload();
