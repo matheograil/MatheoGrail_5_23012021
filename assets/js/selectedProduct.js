@@ -21,8 +21,7 @@ request.onreadystatechange = function() {
 
         let i = 0;
         for (data in productSelected['lenses']) {
-            let newDiv = document.querySelector('.selectedProduct__options');
-            newDiv.insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
+            document.querySelector('.selectedProduct__options').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
             i++;
         }
     }
@@ -41,7 +40,7 @@ document.querySelector('.button').addEventListener('click', function() {
         localStorage.setItem('myCart', JSON.stringify(myCart));
     }
     else {
-        let newProductInCart = myCart.push(productSelected);
+        myCart.push(productSelected);
         localStorage.setItem('myCart', JSON.stringify(myCart));
     }
 
