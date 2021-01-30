@@ -35,6 +35,13 @@ document.querySelector('.button').addEventListener('click', function() {
     let selectedOption = document.querySelector('.selectedProduct__options').value;
 
     let myCart = JSON.parse(localStorage.getItem('myCart'));
+    addProductInCart(myCart);
+
+    window.alert('Article ajouté au panier !');
+    document.location.reload();
+});
+
+function addProductInCart(myCart) {
     if (myCart == null) {
         productSelected['amount'] = 1;
         myCart = [productSelected];
@@ -58,7 +65,4 @@ document.querySelector('.button').addEventListener('click', function() {
             localStorage.setItem('myCart', JSON.stringify(myCart));
         }
     }
-
-    window.alert('Article ajouté au panier !');
-    document.location.reload();
-});
+}
