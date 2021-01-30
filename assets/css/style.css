@@ -112,6 +112,11 @@ a.button:active {
     }
 }
 
+.selectedProduct {
+    margin: 0 auto;
+    max-width: 1250px;
+}
+
 .selectedProduct__header {
     margin: 20px;
     padding: 0 10px 0 10px;
