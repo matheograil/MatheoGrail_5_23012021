@@ -14,3 +14,5 @@ request.onreadystatechange = function() {
 
 request.open('GET', 'http://localhost:3000/api/cameras');
 request.send();
+
+//Travis CI TEST
