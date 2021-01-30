@@ -114,6 +114,7 @@ a.button:active {
 
 .selectedProduct {
     margin: 0 auto;
+    margin-bottom: 25px;
     max-width: 1250px;
 }
 

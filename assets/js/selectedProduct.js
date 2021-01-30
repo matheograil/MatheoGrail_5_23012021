@@ -21,8 +21,7 @@ request.onreadystatechange = function() {
 
         let i = 0;
         for (data in productSelected['lenses']) {
-            let newDiv = document.querySelector('.selectedProduct__options');
-            newDiv.insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
+            document.querySelector('.selectedProduct__options').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
             i++;
         }
     }
@@ -36,15 +35,34 @@ document.querySelector('.button').addEventListener('click', function() {
     let selectedOption = document.querySelector('.selectedProduct__options').value;
 
     let myCart = JSON.parse(localStorage.getItem('myCart'));
-    if (myCart == null) {
-        myCart = [productSelected];
-        localStorage.setItem('myCart', JSON.stringify(myCart));
-    }
-    else {
-        let newProductInCart = myCart.push(productSelected);
-        localStorage.setItem('myCart', JSON.stringify(myCart));
-    }
+    addProductInCart(myCart);
 
     window.alert('Article ajouté au panier !');
     document.location.reload();
 });
+
+function addProductInCart(myCart) {
+    if (myCart == null) {
+        productSelected['amount'] = 1;
+        myCart = [productSelected];
+        localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
+    else {
+        i = 0;
+        let loopTrue = false;
+        for (data in myCart) {
+            if (myCart[i]['_id'] == productSelected['_id']) {
+                myCart[i]['amount']++;
+                localStorage.setItem('myCart', JSON.stringify(myCart));
+                loopTrue = true;
+                break;
+            }
+            i++;
+        }
+        if (loopTrue != true) {
+            productSelected['amount'] = 1;
+            myCart.push(productSelected);
+            localStorage.setItem('myCart', JSON.stringify(myCart));
+        }
+    }
+}

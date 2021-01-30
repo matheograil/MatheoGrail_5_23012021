@@ -4,8 +4,7 @@ let numberProductsInCart;
 
 if (myCart == null) {
     numberProductsInCart = 0;
-}
-else {
+} else {
     numberProductsInCart = myCart.length;
 }
 
