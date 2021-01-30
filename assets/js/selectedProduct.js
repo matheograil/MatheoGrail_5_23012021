@@ -36,12 +36,26 @@ document.querySelector('.button').addEventListener('click', function() {
 
     let myCart = JSON.parse(localStorage.getItem('myCart'));
     if (myCart == null) {
+        productSelected['amount'] = 1;
         myCart = [productSelected];
         localStorage.setItem('myCart', JSON.stringify(myCart));
     }
     else {
-        myCart.push(productSelected);
-        localStorage.setItem('myCart', JSON.stringify(myCart));
+        i = 0;
+        let loopTrue = false;
+        for (data in myCart) {
+            if (myCart[i]['_id'] == productSelected['_id']) {
+                myCart[i]['amount']++;
+                localStorage.setItem('myCart', JSON.stringify(myCart));
+                loopTrue = true;
+                break;
+            }
+            i++;
+        }
+        if (loopTrue != true) {
+            myCart.push(productSelected);
+            localStorage.setItem('myCart', JSON.stringify(myCart));
+        }
     }
 
     window.alert('Article ajouté au panier !');
