@@ -2,12 +2,13 @@
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let productSelectedId = urlParams.get('id');
+let productSelected;
 
 let request = new XMLHttpRequest();
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        let productSelected = JSON.parse(this.responseText);
+        productSelected = JSON.parse(this.responseText);
 
         //DOM.
         document.title = `Orinico - ${productSelected['name']}`;
@@ -36,11 +37,11 @@ document.querySelector('.button').addEventListener('click', function() {
 
     let myCart = JSON.parse(localStorage.getItem('myCart'));
     if (myCart == null) {
-        myCart = [[productSelectedId, selectedOption]];
+        myCart = [productSelected];
         localStorage.setItem('myCart', JSON.stringify(myCart));
     }
     else {
-        let newProductInCart = myCart.push(productSelectedId);
+        let newProductInCart = myCart.push(productSelected);
         localStorage.setItem('myCart', JSON.stringify(myCart));
     }
 

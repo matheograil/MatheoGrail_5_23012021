@@ -7,7 +7,7 @@ request.onreadystatechange = function() {
         for (data in allProducts) {
             //DOM.
             let priceWithoutCents = allProducts[data]['price']/100;
-            document.querySelector('.products__items').insertAdjacentHTML('beforeend', `<a href="/product/?id=${allProducts[data]['_id']}"><div class="products__item"><img src="${allProducts[data]['imageUrl']}"><div class="products__description"><p>${allProducts[data]['name']}</p><p class="price">${priceWithoutCents}€</p></div></div></a>`);
+            document.querySelector('.products__items').insertAdjacentHTML('beforeend', `<a href="product.html?id=${allProducts[data]['_id']}"><div class="products__item"><img src="${allProducts[data]['imageUrl']}"><div class="products__description"><p>${allProducts[data]['name']}</p><p class="price">${priceWithoutCents}€</p></div></div></a>`);
         }
     }
 };
