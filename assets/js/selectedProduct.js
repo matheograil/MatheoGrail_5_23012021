@@ -36,7 +36,7 @@ document.querySelector('.button').addEventListener('click', function() {
 
     let myCart = JSON.parse(localStorage.getItem('myCart'));
     if (myCart == null) {
-        myCart = [[productSelectedId, selectedOption]];
+        myCart = [productSelectedId];
         localStorage.setItem('myCart', JSON.stringify(myCart));
     }
     else {
