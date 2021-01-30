@@ -53,6 +53,7 @@ document.querySelector('.button').addEventListener('click', function() {
             i++;
         }
         if (loopTrue != true) {
+            productSelected['amount'] = 1;
             myCart.push(productSelected);
             localStorage.setItem('myCart', JSON.stringify(myCart));
         }
