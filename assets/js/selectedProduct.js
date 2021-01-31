@@ -19,7 +19,7 @@ fetch(`http://localhost:3000/api/cameras/${productSelectedId}`)
 
 		let i = 0;
 		for (data in ['lenses']) {
-			document.querySelector('.selectedProduct__options').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
+			document.querySelector('.selectedProduct__selector').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
 			i++;
 		}
 	})
@@ -34,7 +34,6 @@ fetch(`http://localhost:3000/api/cameras/${productSelectedId}`)
 //On écoute les évènements pour savoir quand ajouter l'article au panier.
 document.querySelector('.button').addEventListener('click', function() {
 	let myCart;
-	let selectedOption = document.querySelector('.selectedProduct__options').value;
 
 	try {
 		myCart = JSON.parse(localStorage.getItem('myCart'));
