@@ -1,16 +1,16 @@
 //Calcul du nombre de produits dans le panier.
-let myCart;
+let myCartCount;
 
 try {
-	myCart = JSON.parse(localStorage.getItem('myCart'));
+	myCartCount = JSON.parse(localStorage.getItem('myCart'));
 } catch(err) {
-	myCart = null;
+	myCartCount = null;
 } finally {
 	let numberProductsInCart;
-	if (myCart == null) {
+	if (myCartCount == null) {
 		numberProductsInCart = 0;
 	} else {
-		numberProductsInCart = myCart.length;
+		numberProductsInCart = myCartCount.length;
 	}
 	//DOM.
 	document.querySelector('.myCartCount').textContent = `Mon panier (${numberProductsInCart})`;
