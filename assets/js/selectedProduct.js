@@ -26,7 +26,7 @@ request.onreadystatechange = function() {
         }
     } else if (this.status != 200 && this.status != 0) {
         //Si le produit n'existe pas, on redirige l'utilisateur.
-        document.location'index.html';
+        document.location='index.html';
     }
 };
 
