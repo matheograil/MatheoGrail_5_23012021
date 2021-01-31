@@ -1,15 +1,13 @@
 //Vérification du produit.
-let queryString = window.location.search;
-let urlParams = new URLSearchParams(queryString);
-let productSelectedId = urlParams.get('id');
-let productSelected;
+let productSelectedId = new URLSearchParams(window.location.search).get('id');
+let productSelectedData;
 
-let request = new XMLHttpRequest();
-
-request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        productSelected = JSON.parse(this.responseText);
-
+fetch(`http://localhost:3000/api/cameras/${productSelectedId}`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((productSelected) => {
+        productSelectedData = productSelected;
         //DOM.
         document.title = `Orinico - ${productSelected['name']}`;
         document.querySelector('meta[name="description"]').setAttribute('content', productSelected['description']);
@@ -20,24 +18,30 @@ request.onreadystatechange = function() {
         document.querySelector('.selectedProduct__price').textContent = 'Prix → ' + productSelected['price']/100 + '€';
 
         let i = 0;
-        for (data in productSelected['lenses']) {
+        for (data in ['lenses']) {
             document.querySelector('.selectedProduct__options').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
             i++;
         }
-    } else if (this.status != 200 && this.status != 0) {
-        //Si le produit n'existe pas, on redirige l'utilisateur.
-        document.location='index.html';
-    }
-};
-
-request.open('GET', `http://localhost:3000/api/cameras/${productSelectedId}`);
-request.send();
+    })
+    .catch((err) => {
+        //Si une erreur se produit.
+        document.write("Nous sommes désolés, mais une erreur s'est produite. Nous allons vous rediriger dans quelques instants.");
+        setTimeout(function(){
+            window.location='index.html';
+        }, 5000);
+    })
 
 //On écoute les évènements pour savoir quand ajouter l'article au panier.
 document.querySelector('.button').addEventListener('click', function() {
+    let myCart;
     let selectedOption = document.querySelector('.selectedProduct__options').value;
 
-    let myCart = JSON.parse(localStorage.getItem('myCart'));
+    try {
+        myCart = JSON.parse(localStorage.getItem('myCart'));
+    } catch(err) {
+        localStorage.removeItem('myCart');
+        myCart = null;
+    }
     addProductInCart(myCart);
 
     window.alert('Article ajouté au panier !');
@@ -45,15 +49,15 @@ document.querySelector('.button').addEventListener('click', function() {
 });
 
 function addProductInCart(myCart) {
-    if (myCart == false) {
-        productSelected['amount'] = 1;
-        myCart = [productSelected];
+    if (myCart == null) {
+        productSelectedData['amount'] = 1;
+        myCart = [productSelectedData];
         localStorage.setItem('myCart', JSON.stringify(myCart));
     } else {
         i = 0;
         let productAlreadyInCart = false;
         for (data in myCart) {
-            if (myCart[i]['_id'] == productSelected['_id']) {
+            if (myCart[i]['_id'] == productSelectedData['_id']) {
                 myCart[i]['amount']++;
                 localStorage.setItem('myCart', JSON.stringify(myCart));
                 productAlreadyInCart = true;
@@ -62,8 +66,8 @@ function addProductInCart(myCart) {
             i++;
         }
         if (productAlreadyInCart != true) {
-            productSelected['amount'] = 1;
-            myCart.push(productSelected);
+            productSelectedData['amount'] = 1;
+            myCart.push(productSelectedData);
             localStorage.setItem('myCart', JSON.stringify(myCart));
         }
     }
