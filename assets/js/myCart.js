@@ -11,7 +11,7 @@ try {
 		let priceWithoutCents = (myCart[data]['price']*myCart[data]['amount'])/100;
 		totalPrice = totalPrice + priceWithoutCents;
 		//DOM.
-		document.querySelector('.myCart__items').insertAdjacentHTML('beforeend', `<div class="myCart__item"><img class="myCart__img" src="${myCart[data]['imageUrl']}"><div class="myCart__description"><p><code>${myCart[data]['amount']}x</code> ${myCart[data]['name']}</p><p class="myCart__price">${priceWithoutCents}€</p></div></div>`);
+		document.querySelector('.myCart__items').insertAdjacentHTML('beforeend', `<a href="selectedProduct.html?id=${myCart[data]['_id']}"><div class="myCart__item"><img class="myCart__img" src="${myCart[data]['imageUrl']}"><div class="myCart__description"><p><code>${myCart[data]['amount']}x</code> ${myCart[data]['name']}</p><p class="myCart__price">${priceWithoutCents}€</p></div></div></a>`);
 	}
 }
 
