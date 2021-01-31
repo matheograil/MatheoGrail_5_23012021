@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Orinico</title>
-		<meta name="description" content="">
+		<title>Orinico - Mon panier</title>
+		<meta name="description" content="Accédez à vos produits précedemment enregistrés. Validez ou modifiez votre panier !">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 		<link rel="icon" type="image/png" href="assets/img/favicon.png" />
 		<link href="assets/css/style.css" rel="stylesheet">
 		<noscript>Le site ne peut pas fonctionner correctement car JavaScript est désactivé.</noscript>
 
-		<script type="text/javascript" src="assets/js/selectedProduct.js" async></script>
+		<script type="text/javascript" src="assets/js/myCart.js" async></script>
 		<script type="text/javascript" src="assets/js/myCartCount.js" async></script>
 	</head>
 	<body>
-		<section class="selectedProduct">
-			<div class="selectedProduct__header">
+		<section class="myCart">
+			<div class="myCart__header">
 				<a href="index.html"><img class="logo" src="assets/img/logo.png"></a>
-				<h1 class="selectedProduct__title"></h1>
+				<h1 class="myCart__title">Mon panier</h1>
 				<a class="myCartCount" href="myCart.html">Mon panier</a>
 			</div>
-			<div class="selectedProduct__info">
-				<img class="selectedProduct__img">
-				<p class="selectedProduct__name"></p>
-				<p class="selectedProduct__description"></p>
-				<p class="selectedProduct__price"></p>
-				<a class="button">Ajouter au panier</a>
-				<select class="selectedProduct__options"></select>
-			</div>
+			<div class="myCart__items"></div>
 		</section>
 	</body>
 </html>
