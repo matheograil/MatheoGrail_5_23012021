@@ -42,8 +42,11 @@ document.querySelector('.button').addEventListener('click', function() {
 		myCart = null;
 	} finally {
 		addProductInCart(myCart);
-		window.alert('Article ajouté au panier !');
-		document.location.reload();
+		myCartCount();
+		document.querySelector('.button').textContent = 'Produit ajouté';
+		setTimeout(function(){
+			document.querySelector('.button').textContent = 'Ajouter au panier';
+		}, 1000);
 	}
 });
 
