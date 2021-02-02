@@ -43,9 +43,9 @@ document.querySelector('.button').addEventListener('click', function() {
 	} finally {
 		addProductInCart(myCart);
 		myCartCount();
-		document.querySelector('.button').textContent = 'Produit ajouté';
+		document.querySelector('.button').textContent = '✅ Produit ajouté';
 		setTimeout(function(){
-			document.querySelector('.button').textContent = 'Ajouter au panier';
+			document.querySelector('.button').textContent = '🛍️ Ajouter au panier';
 		}, 1000);
 	}
 });
