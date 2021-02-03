@@ -4,10 +4,10 @@ fetch('http://localhost:3000/api/cameras')
 		return response.json();
 	})
 	.then((allProducts) => {
-		for (data in allProducts) {
+		for (i in allProducts) {
 			//DOM.
-			let priceWithoutCents = allProducts[data]['price']/100;
-			document.querySelector('.allProducts__items').insertAdjacentHTML('beforeend', `<a href="selectedProduct.html?id=${allProducts[data]['_id']}"><div class="allProducts__item"><img class="allProducts__img" src="${allProducts[data]['imageUrl']}"><div class="allProducts__description"><p>${allProducts[data]['name']}</p><p class="allProducts__price">${priceWithoutCents}€</p></div></div></a>`);
+			let priceWithoutCents = allProducts[i]['price']/100;
+			document.querySelector('.allProducts__items').insertAdjacentHTML('beforeend', `<a href="selectedProduct.html?id=${allProducts[i]['_id']}"><div class="allProducts__item"><img class="allProducts__img" src="${allProducts[i]['imageUrl']}"><div class="allProducts__description"><p>${allProducts[i]['name']}</p><p class="allProducts__price">${priceWithoutCents}€</p></div></div></a>`);
 		}
 	})
 	.catch((err) => {

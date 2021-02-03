@@ -14,11 +14,11 @@ function myCart(refresh) {
 				element.removeChild(element.firstChild);
 			}
 		}
-		for (data in myCart) {
-			let priceWithoutCents = (myCart[data]['price']*myCart[data]['amount'])/100;
+		for (i in myCart) {
+			let priceWithoutCents = (myCart[i]['price']*myCart[i]['amount'])/100;
 			totalPrice = totalPrice + priceWithoutCents;
 			//DOM.
-			document.querySelector('.myCart__items').insertAdjacentHTML('beforeend', `<a href="selectedProduct.html?id=${myCart[data]['_id']}"><div class="myCart__item"><img class="myCart__img" src="${myCart[data]['imageUrl']}"><div class="myCart__description"><p><code>${myCart[data]['amount']}x</code> ${myCart[data]['name']}</p><p class="myCart__price">${priceWithoutCents}€</p></div></div></a>`);
+			document.querySelector('.myCart__items').insertAdjacentHTML('beforeend', `<a href="selectedProduct.html?id=${myCart[i]['_id']}"><div class="myCart__item"><img class="myCart__img" src="${myCart[i]['imageUrl']}"><div class="myCart__description"><p><code>${myCart[i]['amount']}x</code> ${myCart[i]['name']}</p><p class="myCart__price">${priceWithoutCents}€</p></div></div></a>`);
 		}
 	}
 

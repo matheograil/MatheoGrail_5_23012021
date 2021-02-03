@@ -17,10 +17,8 @@ fetch(`http://localhost:3000/api/cameras/${productSelectedId}`)
 		document.querySelector('.selectedProduct__description').textContent = 'Description → ' + productSelected['description'];
 		document.querySelector('.selectedProduct__price').textContent = 'Prix → ' + productSelected['price']/100 + '€';
 
-		let i = 0;
-		for (data in productSelected['lenses']) {
+		for (i in productSelected['lenses']) {
 			document.querySelector('.selectedProduct__selector').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
-			i++;
 		}
 	})
 	.catch((err) => {
@@ -56,16 +54,14 @@ function addProductInCart(myCart) {
 		myCart = [productSelectedData];
 		localStorage.setItem('myCart', JSON.stringify(myCart));
 	} else {
-		i = 0;
 		let productAlreadyInCart = false;
-		for (data in myCart) {
+		for (i in myCart) {
 			if (myCart[i]['_id'] == productSelectedData['_id']) {
 				myCart[i]['amount']++;
 				localStorage.setItem('myCart', JSON.stringify(myCart));
 				productAlreadyInCart = true;
 				break;
 			}
-			i++;
 		}
 		if (productAlreadyInCart != true) {
 			productSelectedData['amount'] = 1;
