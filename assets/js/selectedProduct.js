@@ -18,7 +18,7 @@ fetch(`http://localhost:3000/api/cameras/${productSelectedId}`)
 		document.querySelector('.selectedProduct__price').textContent = 'Prix → ' + productSelected['price']/100 + '€';
 
 		let i = 0;
-		for (data in ['lenses']) {
+		for (data in productSelected['lenses']) {
 			document.querySelector('.selectedProduct__selector').insertAdjacentHTML('beforeend', `<option value="${i}">${productSelected['lenses'][i]}</option>`);
 			i++;
 		}
