@@ -51,12 +51,54 @@ document.querySelector('#checkMyCart').addEventListener('click', function() {
 		showError('Votre panier est vide !');
 	} else {
 		//Récupération des formulaires.
-		let firstName = document.getElementById('firstName').value;
-		let lastName = document.getElementById('lastName').value;
-		let address = document.getElementById('address').value;
-		let city = document.getElementById('city').value;
-		let email = document.getElementById('email').value;
+		let contact = new Object();
+		contact.firstName = document.getElementById('firstName').value;
+		contact.lastName = document.getElementById('lastName').value;
+		contact.address = document.getElementById('address').value;
+		contact.city = document.getElementById('city').value;
+		contact.email = document.getElementById('email').value;
 
-		//Vérification des variables...
+		let firstNameRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+		let lastNameRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+		let addressRegex = /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/u;
+		let cityRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+		let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+		
+		//Vérification des données de l'utilisateur.
+		if (firstNameRegex.test(contact.firstName) && lastNameRegex.test(contact.lastName) && addressRegex.test(contact.address) && cityRegex.test(contact.city) && emailRegex.test(contact.email)) {
+			//Préparation des données pour l'API.
+			let myCart = JSON.parse(localStorage.getItem('myCart'));
+			let totalPrice = 0;
+			let products = [];
+			for (i in myCart) {
+				for (let x = 0; x < myCart[i]['amount']; x++) {
+					products.push(myCart[i]['_id']);
+					totalPrice = totalPrice + myCart[i]['price']/100;
+				}
+			}
+			let orderData = {contact: contact, products: products};
+
+			//Envoie à l'API.
+			fetch('http://localhost:3000/api/cameras/order', {method: "POST", body: JSON.stringify(orderData), headers: {"Content-type": "application/json; charset=UTF-8"}})
+				.then((response) => {
+					return response.json();
+				})
+				.then((orderResponse) => {
+					localStorage.removeItem('myCart');
+					document.write(`Merci d'avoir commandé sur notre site ! Voici l'identifiant de votre commande : ${orderResponse['orderId']}. Nous vous rappelons que le prix total de votre commande était de ${totalPrice}€. Redirection dans 60 secondes...`);
+					setTimeout(function(){
+						window.location='index.html';
+					}, 60000);
+				})
+				.catch((err) => {
+					//Si une erreur se produit.
+					document.write("Nous sommes désolés, mais la connexion à l'API est impossible. Rafraîchissement de la page dans 10 secondes...");
+					setTimeout(function(){
+						document.location.reload();
+					}, 10000);
+				})
+		} else {
+			showError('Données incorrectes !');
+		}
 	}
 });
