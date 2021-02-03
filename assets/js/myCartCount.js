@@ -12,6 +12,8 @@ function myCartCount() {
 		}
 		//DOM.
 		document.querySelector('.myCartCount').textContent = `Mon panier (${numberProductsInCart})`;
+
+		return numberProductsInCart;
 	}
 }
 

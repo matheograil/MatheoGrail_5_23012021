@@ -35,3 +35,28 @@ document.querySelector('#deleteMyCart').addEventListener('click', function() {
 	myCartCount();
 	myCart(true);
 });
+
+//On écoute les évènements pour savoir quand valider la commande.
+document.querySelector('#checkMyCart').addEventListener('click', function() {
+	//Pour afficher les erreurs.
+	function showError (message) {
+		document.querySelector('#checkMyCart').textContent = `❌ ${message}`;
+		setTimeout(function(){
+			document.querySelector('#checkMyCart').textContent = '✅  Valider ma commande';
+		}, 2000);
+	}
+
+	//Le panier est-il vide ?
+	if (myCartCount() == 0) {
+		showError('Votre panier est vide !');
+	} else {
+		//Récupération des formulaires.
+		let firstName = document.getElementById('firstName').value;
+		let lastName = document.getElementById('lastName').value;
+		let address = document.getElementById('address').value;
+		let city = document.getElementById('city').value;
+		let email = document.getElementById('email').value;
+
+		//Vérification des variables...
+	}
+});
