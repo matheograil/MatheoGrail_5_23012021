@@ -203,6 +203,16 @@ a.button:active {
     margin: 30px;
 }
 
+.myCart .myCart__actions .myCart__buttons {
+    margin-top: 5px;
+}
+
+.myCart .myCart__actions .myCart__form .myCart__input {
+    width: calc(100% - 40px);
+    padding: 12px 20px;
+    margin: 5px 0 5px 0;
+}
+
 @media screen and (max-width: 1250px) {
     .myCart .myCart__items .myCart__item {
         width: calc(100% - 20px);

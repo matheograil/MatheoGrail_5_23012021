@@ -20,7 +20,17 @@
 			</div>
 			<div class="myCart__items"></div>
 			<div class="myCart__actions">
-				<a id="deleteMyCart" class="button">❌ Supprimer mon panier</a>
+				<div class="myCart__form">
+					<input class="myCart__input" type="text" name="firstName" id="firstName" placeholder="Prénom" required>
+					<input class="myCart__input" type="text" name="lastName" id="lastName" placeholder="Nom" required>
+					<input class="myCart__input" type="text" name="address" id="address" placeholder="Adresse" required>
+					<input class="myCart__input" type="text" name="city" id="city" placeholder="Ville" required>
+					<input class="myCart__input" type="email" name="email" id="email" placeholder="Adresse électronique" required>
+				</div>
+				<div class="myCart__buttons">
+					<a id="deleteMyCart" class="button">❌ Supprimer mon panier</a>
+					<a id="checkMyCart" class="button">✅ Valider ma commande</a>
+				</div>
 			</div>
 		</section>
 	</body>
