@@ -58,14 +58,12 @@ document.querySelector('#checkMyCart').addEventListener('click', function() {
 		contact.city = document.getElementById('city').value;
 		contact.email = document.getElementById('email').value;
 
-		let firstNameRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
-		let lastNameRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+		let firstAndLastNameCityRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 		let addressRegex = /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/u;
-		let cityRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 		let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 		
 		//Vérification des données de l'utilisateur.
-		if (firstNameRegex.test(contact.firstName) && lastNameRegex.test(contact.lastName) && addressRegex.test(contact.address) && cityRegex.test(contact.city) && emailRegex.test(contact.email)) {
+		if (firstAndLastNameCityRegex.test(contact.firstName) && firstAndLastNameCityRegex.test(contact.lastName) && addressRegex.test(contact.address) && firstAndLastNameCityRegex.test(contact.city) && emailRegex.test(contact.email)) {
 			//Préparation des données pour l'API.
 			let myCart = JSON.parse(localStorage.getItem('myCart'));
 			let totalPrice = 0;
