@@ -83,10 +83,11 @@ document.querySelector('#checkMyCart').addEventListener('click', function() {
 				})
 				.then((orderResponse) => {
 					localStorage.removeItem('myCart');
-					document.write(`Merci d'avoir commandé sur notre site ! Voici l'identifiant de votre commande : ${orderResponse['orderId']}. Nous vous rappelons que le prix total de votre commande était de ${totalPrice}€. Redirection dans 60 secondes...`);
-					setTimeout(function(){
-						window.location='index.html';
-					}, 60000);
+					let myOrder = new Object();
+					myOrder.id = orderResponse['orderId'];
+					myOrder.totalPrice = totalPrice;
+					localStorage.setItem('myOrder', JSON.stringify(myOrder));
+					window.location='thankYou.html';
 				})
 				.catch((err) => {
 					//Si une erreur se produit.
