@@ -91,10 +91,10 @@ document.querySelector('#checkMyCart').addEventListener('click', function() {
 				})
 				.catch((err) => {
 					//Si une erreur se produit.
-					document.write("Nous sommes désolés, mais la connexion à l'API est impossible. Rafraîchissement de la page dans 10 secondes...");
+					document.write("Nous sommes désolés, mais une erreur s'est produite. Nous allons vous rediriger dans quelques instants.");
 					setTimeout(function(){
-						document.location.reload();
-					}, 10000);
+						window.location='index.html';
+					}, 5000);
 				})
 		} else {
 			showError('Données incorrectes !');
