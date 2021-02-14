@@ -1,14 +1,14 @@
 function myCartCount() {
-	let myCartCount;
+	let myCart;
 
 	try {
-		myCartCount = JSON.parse(localStorage.getItem('myCart'));
+		myCart = JSON.parse(localStorage.getItem('myCart'));
 	} catch(err) {
-		myCartCount = null;
+		myCart = null;
 	} finally {
 		let numberProductsInCart = 0;
-		for (i in myCartCount) {
-			numberProductsInCart = numberProductsInCart + myCartCount[i]['amount'];
+		for (i in myCart) {
+			numberProductsInCart = numberProductsInCart + myCart[i]['amount'];
 		}
 		//DOM.
 		document.querySelector('.myCartCount').textContent = `Mon panier (${numberProductsInCart})`;
