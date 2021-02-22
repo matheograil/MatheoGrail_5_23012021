@@ -1,7 +1,7 @@
 # OpenClassrooms - Cinquième projet
 Construisez un site e-commerce.
 
-![CodeQL](https://github.com/matheograil/MatheoGrail_5_23012021/workflows/CodeQL/badge.svg?branch=main)
+[![CodeQL](https://github.com/matheograil/MatheoGrail_5_23012021/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/matheograil/MatheoGrail_5_23012021/actions/workflows/codeql-analysis.yml)
 
 - Nom et Prénom : Grail Mathéo
 - Projet : #05
