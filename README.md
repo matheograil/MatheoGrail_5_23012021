@@ -7,4 +7,6 @@ Construisez un site e-commerce.
 - Projet : #05
 - Date de début : 23/01/2021
 
-Attention, ce projet nécessite la mise en place du back (https://github.com/OpenClassrooms-Student-Center/JWDP5.git).
+## Configuration
+
+Ce projet nécessite la mise en place du _back-end_ : https://github.com/OpenClassrooms-Student-Center/JWDP5.git.
